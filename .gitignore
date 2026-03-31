@@ -1,0 +1,46 @@
+# Node / PNPM
+node_modules/
+.pnpm-store/
+pnpm-lock.yaml
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build / Dist
+dist/
+build/
+coverage/
+.tmp/
+.temp/
+
+# Environment Variables
+.env
+.env.*
+!.env.example
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Husky
+.husky/_
+
+# Docker
+docker/*.log
+
+# Kubernetes
+*.secret.yaml
+
+# Testing
+coverage/
