@@ -1,5 +1,3 @@
-// src/controllers/job.controller.ts
-
 import { Request, Response } from 'express';
 import { jobQueue } from '../config/queue.js';
 import { v4 as uuidv4 } from 'uuid';
@@ -16,8 +14,10 @@ export async function submitJob(req: Request, res: Response) {
     throw new AppError('Number must be a valid number', 400);
   }
 
+  //when job added specify with uuid
   const jobId = uuidv4();
 
+  //Add job to the queue
   const job = await jobQueue.add('fibonacci-job', { number }, { jobId });
 
   logger.info({
@@ -38,12 +38,14 @@ export async function getJobStatus(req: Request<{ id: string }>, res: Response) 
 
   const job = await jobQueue.getJob(id);
 
+  //If job not found
   if (!job) {
     throw new AppError('Job not found', 404);
   }
 
   const state = await job.getState();
 
+  //Job response(like waiting ,completed or failed)
   const response: JobStatusResponse = {
     jobId: job.id!,
     status: state,
