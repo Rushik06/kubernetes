@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { jobQueue } from '../config/queue.js';
 import { v4 as uuidv4 } from 'uuid';
-import { logger } from '../utils/logger.js';
+import { logger } from '@shared/utils';
 import { AppError } from '@shared/utils';
 import { JobStatusResponse } from '../types/job.types.js';
 

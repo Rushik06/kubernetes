@@ -5,11 +5,8 @@ after that it silently stops AS Fibonacci recursion is O(1.618)^n which is golde
 the time complexity will increase exponentially */
 
 function fib(n: number): number {
-  if (n <= 1) {
-    return n;
-  } else {
-    return fib(n - 1) + fib(n - 2);
-  }
+  if (n <= 1) return n;
+  return fib(n - 1) + fib(n - 2);
 }
 
 for (let n = 1; n <= 100; n += 2) {
