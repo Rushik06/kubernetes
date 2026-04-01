@@ -9,7 +9,7 @@ import { JobStatusResponse } from '../types/job.types.js';
 
 // Submit Job
 export async function submitJob(req: Request, res: Response) {
-  const { number = 40 } = req.body;
+  const { number } = req.body;
 
   // Validate input
   if (typeof number !== 'number') {

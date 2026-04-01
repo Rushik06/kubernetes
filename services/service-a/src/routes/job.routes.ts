@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post('/submit', validateRequest, submitJob);
 router.get('/status/:id', getJobStatus);
-router.get('/health', (req, res) => {
+router.get('/health', (_req, res) => {
   res.status(200).json({ status: 'ok', service: 'service-a' });
 });
 
