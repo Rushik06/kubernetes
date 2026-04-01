@@ -6,7 +6,7 @@ import rateLimit from 'express-rate-limit';
 
 import jobRoutes from './routes/job.routes.js';
 import { errorHandler } from '@shared/utils';
-import { logger } from './utils/logger.js';
+import { logger } from '@shared/utils';
 
 // Load env variables
 dotenv.config();
