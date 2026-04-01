@@ -2,30 +2,28 @@ import { logger } from '@shared/utils';
 import { worker } from './worker/worker.js';
 import dotenv from 'dotenv';
 import express from 'express';
-import { register } from './metrics/metrics.js';
+import metricsRoutes from './routes/metrics.routes.js';
 
 // Load env variables
 dotenv.config();
 
 logger.info('Service B worker started');
 
-// Metrics server setup
+// Express app
 const app = express();
 
-app.get('/metrics', async (_req, res) => {
-  res.set('Content-Type', register.contentType);
-  res.end(await register.metrics());
-});
+// use routes
+app.use('/', metricsRoutes);
 
 const PORT = process.env.METRICS_PORT || 3001;
 
 app.listen(PORT, () => {
-  logger.info(` Metrics running on port ${PORT}`);
+  logger.info(`📊 Metrics running on port ${PORT}`);
 });
 
-// Debug events from the worker
+// Debug events from worker
 worker.on('completed', (job) => {
-  logger.info(`job ${job.id} completed sucessfully`);
+  logger.info(`job ${job.id} completed successfully`);
 });
 
 worker.on('failed', (job, err) => {
