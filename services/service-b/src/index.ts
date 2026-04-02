@@ -18,7 +18,7 @@ app.use('/', metricsRoutes);
 const PORT = process.env.METRICS_PORT || 3001;
 
 app.listen(PORT, () => {
-  logger.info(`📊 Metrics running on port ${PORT}`);
+  logger.info(`Metrics running on port ${PORT}`);
 });
 
 // Debug events from worker
