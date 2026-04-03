@@ -1,6 +1,6 @@
 # k8s-monitoring
 
-A distributed job processing system built to explore Kubernetes autoscaling and observability. You submit a Fibonacci job via HTTP, it gets queued in Redis, a worker picks it up, and you can watch the whole thing scale in Grafana in real time.
+A distributed job processing system built to explore Kubernetes autoscaling and observability. You submit a Fibonacci job (my task which i have chosen) via HTTP, it gets queued in Redis, a worker picks it up, and you can watch the whole thing scale in Grafana in real time.
 
 ```
 Client → Service A (API) → Redis Queue → Service B (Worker)
