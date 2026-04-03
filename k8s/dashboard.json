@@ -1,0 +1,107 @@
+{
+  "title": "Microservices Monitoring Dashboard",
+  "timezone": "browser",
+  "schemaVersion": 38,
+  "version": 2,
+  "refresh": "5s",
+  "panels": [
+    {
+      "type": "stat",
+      "title": "Total Jobs Submitted",
+      "gridPos": { "x": 0, "y": 0, "w": 6, "h": 4 },
+      "targets": [{ "expr": "sum(total_jobs_submitted)", "refId": "A" }]
+    },
+    {
+      "type": "stat",
+      "title": "Total Jobs Completed",
+      "gridPos": { "x": 6, "y": 0, "w": 6, "h": 4 },
+      "targets": [{ "expr": "sum(total_jobs_completed)", "refId": "A" }]
+    },
+    {
+      "type": "stat",
+      "title": "Queue Length",
+      "gridPos": { "x": 12, "y": 0, "w": 6, "h": 4 },
+      "targets": [{ "expr": "sum(queue_length)", "refId": "A" }]
+    },
+    {
+      "type": "stat",
+      "title": "Total Jobs Processed",
+      "gridPos": { "x": 18, "y": 0, "w": 6, "h": 4 },
+      "targets": [{ "expr": "sum(jobs_processed_total)", "refId": "A" }]
+    },
+    {
+      "type": "timeseries",
+      "title": "Jobs Processed Rate",
+      "gridPos": { "x": 0, "y": 4, "w": 12, "h": 6 },
+      "targets": [{ "expr": "sum(rate(jobs_processed_total[1m]))", "refId": "A" }]
+    },
+    {
+      "type": "timeseries",
+      "title": "Job Processing Time (Avg)",
+      "gridPos": { "x": 12, "y": 4, "w": 12, "h": 6 },
+      "targets": [
+        {
+          "expr": "sum(rate(job_processing_time_seconds_sum[1m])) / sum(rate(job_processing_time_seconds_count[1m]))",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Job Errors",
+      "gridPos": { "x": 0, "y": 10, "w": 12, "h": 6 },
+      "targets": [{ "expr": "sum(rate(job_errors_total[1m]))", "refId": "A" }]
+    },
+    {
+      "type": "timeseries",
+      "title": "Queue Length Over Time",
+      "gridPos": { "x": 12, "y": 10, "w": 12, "h": 6 },
+      "targets": [{ "expr": "queue_length", "refId": "A" }]
+    },
+
+    {
+      "type": "timeseries",
+      "title": "CPU Usage (Services)",
+      "gridPos": { "x": 0, "y": 16, "w": 12, "h": 6 },
+      "targets": [
+        {
+          "expr": "sum(rate(process_cpu_seconds_total{job=~\"service-b|service-c\"}[1m]))",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Memory Usage (MB)",
+      "gridPos": { "x": 12, "y": 16, "w": 12, "h": 6 },
+      "targets": [
+        {
+          "expr": "sum(process_resident_memory_bytes{job=~\"service-b|service-c\"}) / 1024 / 1024",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "CPU Usage Per Pod",
+      "gridPos": { "x": 0, "y": 22, "w": 12, "h": 6 },
+      "targets": [
+        {
+          "expr": "rate(process_cpu_seconds_total{job=~\"service-b|service-c\"}[1m])",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Memory Per Pod (MB)",
+      "gridPos": { "x": 12, "y": 22, "w": 12, "h": 6 },
+      "targets": [
+        {
+          "expr": "process_resident_memory_bytes{job=~\"service-b|service-c\"} / 1024 / 1024",
+          "refId": "A"
+        }
+      ]
+    }
+  ]
+}
