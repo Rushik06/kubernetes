@@ -16,6 +16,13 @@ spec:
         - name: service-b
           image: service-b:latest
           imagePullPolicy: Never
+
+          resources:
+            requests:
+              cpu: "100m"
+            limits:
+              cpu: "500m"
+              
           env:
             - name: REDIS_HOST
               value: redis
@@ -30,10 +37,13 @@ apiVersion: v1
 kind: Service
 metadata:
   name: service-b
+  labels:
+    app: service-b
 spec:
   selector:
     app: service-b
   ports:
-    - port: 3001
+    - name: http
+      port: 3001
       targetPort: 3001
   type: ClusterIP
