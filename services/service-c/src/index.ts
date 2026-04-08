@@ -14,6 +14,7 @@ import {
 dotenv.config();
 
 const app = express();
+export default app;
 
 // connect to same queue as service-a and service-b
 const queue = new Queue('jobs', { connection });
