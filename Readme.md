@@ -3,11 +3,8 @@
 A distributed job processing system built to explore Kubernetes autoscaling and observability. You submit a Fibonacci job (my task which i have chosen) via HTTP, it gets queued in Redis, a worker picks it up, and you can watch the whole thing scale in Grafana in real time.
 
 ```
-Client → Service A (API) → Redis Queue → Service B (Worker)
-                                               ↓
-                                    Service C (Stats & Metrics)
-                                               ↓
-                                    Prometheus → Grafana
+<img width="1295" height="934" alt="kubernetes arch Diagram drawio (1)" src="https://github.com/user-attachments/assets/46c3dbaa-f6cf-451e-9036-5c0d39192a86" />
+
 ```
 
 ## Project structure
