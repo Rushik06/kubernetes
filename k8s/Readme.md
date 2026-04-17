@@ -124,7 +124,7 @@ Grafana will be at `http://localhost:3005`. Default login is `admin` / `prom-ope
 Password created in terminal by:
 
 ```bash
-    encoded = kubectl get secret monitoring-grafana -o jsonpath="{.data.admin-password}"
+    $encoded = kubectl get secret monitoring-grafana -o jsonpath="{.data.admin-password}"
     [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($encoded))
 ```
 
